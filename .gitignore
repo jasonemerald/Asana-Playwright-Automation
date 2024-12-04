@@ -1,0 +1,9 @@
+# Node.js dependencies
+node_modules/
+
+# Playwright Reports
+test-results/
+playwright-report/
+
+# Secret Files
+config/
