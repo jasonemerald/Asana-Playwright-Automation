@@ -30,19 +30,13 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install
 
-      # Create the .env file from GitHub secrets
-      - name: Create .env file
-        run: |
-          echo "API_BASE_URL=${{ secrets.API_BASE_URL }}" >> ./config/.env
-          echo "USERNAME=${{ secrets.USERNAME }}" >> ./config/.env
-          echo "PASSWORD=${{ secrets.PASSWORD }}" >> ./config/.env
-          echo "COMMON_TIMEOUT=${{ secrets.COMMON_TIMEOUT }}" >> ./config/.env
-
       # Run Playwright tests
       - name: Run Playwright tests
-        run: npm run prod
+        run: npm run tests
         env:
-          ENV: prod
+          URL: ${{ secrets.URL }}
+          USER: ${{ secrets.USER }}
+          PASS: ${{ secrets.PASS }}
 
       # Upload the Playwright HTML report
       - name: Upload Playwright report

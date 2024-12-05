@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "npx playwright test",
-    "test": "cross-env ENV=test npx playwright test"
+    "tests": "npx playwright test"
   },
   "keywords": [],
   "author": "",

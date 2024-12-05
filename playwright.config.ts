@@ -1,14 +1,7 @@
 import { defineConfig } from '@playwright/test';
 import * as dotenv from 'dotenv';
-import * as path from 'path';
 
-// Load base .env file first
-dotenv.config({ path: path.resolve(__dirname, 'config/.env') });
-
-// Then load environment-specific .env file, if ENV is specified
-const environment = process.env.ENV || 'dev'; // Default to 'dev' if no ENV is specified
-const envFilePath = path.resolve(__dirname, `config/.env.${environment}`);
-dotenv.config({ path: envFilePath });
+dotenv.config({ path: './config/.env' });
 
 export default defineConfig({
   timeout: 30000,
