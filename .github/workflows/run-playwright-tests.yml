@@ -45,4 +45,4 @@ jobs:
         with:
           name: Playwright Tests
           path: test-results/results.xml
-          reporter: junit
+          reporter: junit-xml
