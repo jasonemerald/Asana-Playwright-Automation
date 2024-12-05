@@ -38,16 +38,11 @@ jobs:
           USER: ${{ secrets.USER }}
           PASS: ${{ secrets.PASS }}
 
-      # Upload the Playwright HTML report
-      - name: Upload Playwright report
-        uses: actions/upload-artifact@v3
+      # Publish JUnit test results to GitHub Actions UI
+      - name: Publish JUnit Test Report
+        uses: dorny/test-reporter@v1
+        if: always()  # Run this step even if tests fail
         with:
-          name: playwright-report
-          path: playwright-report
-
-      # Upload the JUnit test results for GitHub to read
-      - name: Upload JUnit test report
-        uses: actions/upload-artifact@v3
-        with:
-          name: junit-test-report
+          name: Playwright Tests
           path: test-results/results.xml
+          reporter: junit

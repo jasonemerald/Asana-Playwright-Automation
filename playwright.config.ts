@@ -17,6 +17,6 @@ export default defineConfig({
   },
   reporter: [
     ['html', { outputFolder: 'playwright-report', open: 'on-failure' }], // Generates a human-readable HTML report
-    ['junit', { outputFile: 'test-results/results.xml' }] // Generates a JUnit XML report
+    ['junit', { outputFile: 'test-results/results.xml' }] // Generates a JUnit XML report for CI/CD
   ],
 });
