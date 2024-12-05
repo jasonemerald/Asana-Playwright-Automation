@@ -32,18 +32,24 @@ jobs:
 
       # Run Playwright tests and generate reports
       - name: Run Playwright tests
-        run: npm run test
+        run: npx playwright test
         env:
           URL: ${{ secrets.URL }}
           USER: ${{ secrets.USER }}
           PASS: ${{ secrets.PASS }}
 
-      # Publish JUnit Test Report to GitHub Actions UI
-      - name: Publish JUnit Test Report
-        uses: dorny/test-reporter@v1
-        if: always()  # Run this step even if tests fail
+      # Upload JUnit test report to GitHub
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v3
         with:
-          name: Playwright Tests
+          name: junit-test-report
           path: test-results/results.xml
-          reporter: junit
-          fail-on-error: false
+
+      # Publish JUnit Test Results to GitHub UI
+      - name: Publish JUnit Test Results
+        uses: mikepenz/action-junit-report@v3
+        with:
+          report_paths: '**/test-results/results.xml'
+          check_name: 'Playwright Test Results'
+          require_tests: true
+          fail_on_failure: false
