@@ -38,11 +38,12 @@ jobs:
           USER: ${{ secrets.USER }}
           PASS: ${{ secrets.PASS }}
 
-      # Publish JUnit test results to GitHub Actions UI
+      # Publish JUnit Test Report to GitHub Actions UI
       - name: Publish JUnit Test Report
         uses: dorny/test-reporter@v1
         if: always()  # Run this step even if tests fail
         with:
           name: Playwright Tests
           path: test-results/results.xml
-          reporter: junit-xml
+          reporter: junit
+          fail-on-error: false
