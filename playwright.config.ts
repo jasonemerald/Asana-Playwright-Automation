@@ -1,6 +1,7 @@
 import { defineConfig } from '@playwright/test';
 import * as dotenv from 'dotenv';
 
+// Load environment variables from the .env file
 dotenv.config({ path: './config/.env' });
 
 export default defineConfig({
@@ -15,6 +16,7 @@ export default defineConfig({
     video: 'on'
   },
   reporter: [
-    ['html', { outputFolder: 'playwright-report', open: 'on-failure' }]
+    ['html', { outputFolder: 'playwright-report', open: 'on-failure' }], // Generates a human-readable HTML report
+    ['junit', { outputFile: 'test-results/results.xml' }] // Generates a JUnit XML report
   ],
 });
