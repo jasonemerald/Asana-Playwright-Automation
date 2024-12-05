@@ -10,6 +10,11 @@ on:
 jobs:
   playwright-tests:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write  # Grant permission to create checks
+      actions: read
+      pull-requests: write
 
     steps:
       # Checkout the repository
